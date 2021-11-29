@@ -1,0 +1,52 @@
+.contact-form {
+	display: flex;
+	flex: 1 1 0%;
+	-webkit-box-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	align-items: center;
+	flex-direction: column;
+}
+.contact-form h1 {
+	font-size: 16px;
+	font-weight: normal;
+	margin: 0px
+}
+
+.contact-form__controls div {  
+	display: flex;
+	flex-direction: column;
+}
+.contact-form__controls label {
+	display: block;
+	padding: 10px;
+	font-weight: bold;
+}
+.contact-form__controls input {
+	outline-color: rgb(40, 173, 250);
+	font-size: medium;
+}
+
+.contact-form__buttons{
+	margin-top: 20px;
+}
+
+.contact-form__button__ok {
+	background: rgb(40, 173, 250);
+	color: white;
+	font-size: 1em;
+	margin: 1em;
+	padding: 0.25em 1em ;
+	border: 2px solid rgb(40, 173, 250);
+	border-radius: 3px;
+}
+.contact-form__button__cancel {
+	background: white;
+	color: rgb(40, 173, 250);
+	font-size: 1em;
+	margin: 1em;
+	padding: 0.25em 1em;
+	border: 2px solid rgb(40, 173, 250);
+	border-radius: 3px;
+}
+

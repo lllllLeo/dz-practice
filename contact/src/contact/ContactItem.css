@@ -1,0 +1,36 @@
+.contact-item {
+	display: flex;
+	background-color: inherit;
+}
+.contact-item.selected > button{
+	display: flex;
+	background-color: rgb(40, 173, 250);
+	color: white;
+}
+.contact-item button {
+	flex: 1 1 0%;
+	height: 80px;
+	border-width: 0px 0px 1px;
+	border-top-style: initial;
+	border-right-style: initial;
+	border-left-style: initial;
+	border-top-color: initial;
+	border-right-color: initial;
+	border-left-color: initial;
+	border-image: initial;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(212, 211, 211);
+	display: flex;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	justify-content: center;
+	padding-left: 20px;
+	z-index: 0;
+	background-color: transparent;
+	color: black;
+}
+
+.contact-item div {
+	padding: 5px;
+}
+

@@ -1,0 +1,16 @@
+button {
+	cursor: pointer;
+}
+.contact-search {
+	background-color: rgb(248, 248, 248);
+	display: flex;
+	padding: 10px;
+	border-bottom: 1px solid rgb(155, 155, 155);
+}
+
+.contact-search input {
+	flex: 1 1 0%;
+	font-size: medium;
+	padding: 10px;
+	outline-color: rgb(40, 173, 250);
+}

@@ -1,0 +1,27 @@
+ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.contact-list {
+	flex: 1 1 0%;
+	overflow-y: auto;
+}
+
+.contact-list__no-data {
+	flex: 1 1 0%;
+	display: flex;
+	-webkit-box-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	align-items: center;
+}
+
+
+
+/* button:focus {
+  background-color:rgb(40, 173, 250);
+	color: white;
+} */
