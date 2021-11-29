@@ -3,7 +3,6 @@ import { useState } from "react";
 import ContactItem from "./ContactItem";
 import "./ContactList.css";
 const ContactList = (props) => {
-  // unshift
   const [selected, setSeleted] = useState("");
   const setSelectedContactHandler = (selectedId) => {
     setSeleted(selectedId);
@@ -19,10 +18,7 @@ const ContactList = (props) => {
     <ul className={"contact-list"}>
       {props.contacts
         .filter((contact) =>
-          Object.values(contact).some(
-            (value) => value.indexOf(props.searchKeyword) !== -1
-          )
-        )
+          Object.values(contact).some((value) => value.indexOf(props.searchKeyword) !== -1))
         .map((contact) => (
           <ContactItem
             key={contact.id}

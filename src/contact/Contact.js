@@ -5,6 +5,7 @@ import ContactSearch from './ContactSearch';
 import './Contact.css'
 import { useEffect, useState } from 'react';
 import ContactForm from './ContactForm';
+// import ContactForm2 from './ContactForm2';
 import { DUMMY_DATA } from '../data';
 
 const Contact = props => {

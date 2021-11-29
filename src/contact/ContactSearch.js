@@ -14,13 +14,3 @@ const ContactSearch = props => {
 }
 
 export default ContactSearch;
-
-
-/* 
-
-.filter(contact => {
-				return Object.keys(contact).some(key =>
-					contact[key].includes(props.searchKeyword))
-				// contact.name.includes(props.searchKeyword)
-			})
-*/

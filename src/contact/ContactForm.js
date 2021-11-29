@@ -71,7 +71,7 @@ const ContactForm = props => {
 				</div>
 			</div>
 			<div className={'contact-form__buttons'}>
-				<button className={'contact-form__button__ok'} type='submit'>확인</button>
+				<button className={'contact-form__button__confirm'} type='submit'>확인</button>
 				<button className={'contact-form__button__cancel'} onClick={props.onCancel} type='button'>취소</button>
 			</div>
 		</form>

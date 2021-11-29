@@ -13,7 +13,7 @@ const ContactInfo = props => {
 										.map(contact =>
 											<Fragment key={contact.id}>
 												<dl>
-													<dt>이름</dt> {/* css 바꾸기? 클래스이름선언해서 */}
+													<dt>이름</dt>
 													<dd>{contact.name}</dd>
 												</dl>
 												<dl>

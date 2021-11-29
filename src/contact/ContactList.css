@@ -4,7 +4,6 @@ ul {
 	padding: 0px;
 }
 
-
 .contact-list {
 	flex: 1 1 0%;
 	overflow-y: auto;
@@ -18,10 +17,3 @@ ul {
 	-webkit-box-align: center;
 	align-items: center;
 }
-
-
-
-/* button:focus {
-  background-color:rgb(40, 173, 250);
-	color: white;
-} */
