@@ -16,7 +16,7 @@ const ContactForm = props => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		if(enteredName.trim().length === 0 || enteredPhone.trim().length === 0 || enteredAge.trim().length === 0 || enteredEmail.trim().length === 0 || enteredDescription.trim().length === 0) {
+		if(enteredName.trim().length === 0 || enteredPhone.trim().length === 0 || enteredAge.trim().length === 0 || enteredEmail.trim().length === 0) {
 			return;
 		}
 		const contactData = {
