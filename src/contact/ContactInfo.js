@@ -7,6 +7,7 @@ const ContactInfo = props => {
 	}
 
 	let contactInfoContent = <div className={'contact-info__unselected'}>선택된 연락처가 없습니다.</div>;
+	
 	if(props.contactId) {
 		contactInfoContent = 
 			props.contacts.filter(contact => contact.id === props.contactId)

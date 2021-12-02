@@ -22,8 +22,12 @@
 	padding: 10px;
 	font-weight: bold;
 }
-.contact-form__controls input {
+.contact-form__controls__input {
 	outline-color: rgb(40, 173, 250);
+	font-size: medium;
+}
+.contact-form__controls__input .invalid {
+	outline-color: rgb(250, 40, 40);
 	font-size: medium;
 }
 

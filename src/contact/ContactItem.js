@@ -8,7 +8,7 @@ const ContactItem = props => {
 	}	
 
 	return (
-		<li className={`contact-item ${props.selected === props.id ? ' selected' : '' }`}>
+		<li className={`contact-item ${props.selected === props.id  && ' selected'}`}>
 				<button type='button' onClick={viewHandler}>
 					<div>{props.name}</div>
 					<div>{props.phone}</div>

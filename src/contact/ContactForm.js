@@ -1,6 +1,6 @@
 
-import { useEffect, useState } from 'react';
-import './ContactForm.css'
+import { useState } from 'react';
+import './ContactForm.css';
 
 const ContactForm = props => {
 
@@ -9,10 +9,6 @@ const ContactForm = props => {
 	const [enteredAge, setEnteredAge] = useState('');
 	const [enteredEmail, setEnteredEmail] = useState('');
 	const [enteredDescription, setEnteredDescription] = useState('');
-
-	useEffect(() => {
-		console.log('rerendering');
-	})
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -51,7 +47,7 @@ const ContactForm = props => {
 			<div className={'contact-form__controls'}>
 				<div>
 					<label>이름</label>
-					<input type='text' onChange={nameChangeHandler} value={enteredName}></input>
+					<input type='text' onChange={nameChangeHandler}></input>
 				</div>
 				<div>
 					<label>전화번호</label>
@@ -79,3 +75,16 @@ const ContactForm = props => {
 }
 
 export default ContactForm;
+
+
+
+/* 
+const [formIsValid, setFormIsValid] = useState();
+	useEffect(() => {
+		console.log('rerendering');
+		setFormIsValid(
+			enteredName.trim().length === 0 || enteredPhone.trim().length === 0 || enteredAge.trim().length === 0 || enteredEmail.trim().length === 0
+		)
+	}, [enteredName, enteredAge, enteredPhone, enteredEmail])
+*/
+// className={`contact-form__controls__input '${formIsValid ? '' : 'invalid'}`}

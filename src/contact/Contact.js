@@ -8,8 +8,8 @@ import ContactList from './ContactList';
 import ContactSearch from './ContactSearch';
 // import ContactForm2 from './ContactForm2';
 
-const HEROKU_ADDRESS = 'https://contact-nestjs.herokuapp.com/contact/'
-const DEV_ADDRESS = 'http://localhost:3001/contact/'
+const HEROKU_URL = 'https://contact-nestjs.herokuapp.com/contact/'
+// const DEV_URL = 'http://localhost:3001/contact/'
 
 const Contact = () => {
 	const [contacts, setContacts] = useState([]);
@@ -19,10 +19,9 @@ const Contact = () => {
 	const [isEditing, setIsEditing] = useState(false);
 
 	const getContacts = useCallback(async () => { // getContacts가 의존하는 값이 바뀌지 않는 한 기존 함수를 반환
-		console.log('getContacts()');
 		setIsLoading(true);
 		try {
-			const response = await axios.get(HEROKU_ADDRESS)
+			const response = await axios.get(HEROKU_URL)
 			const data = response.data 
 			setContacts(data); 
 		} catch (error) {
@@ -33,12 +32,10 @@ const Contact = () => {
 	},[])
 
 	useEffect(() => {
-		console.log('getContacts 렌더링');
 		getContacts()
 	},[getContacts]);
 
 	useEffect(() => {
-		console.log('setIsEditing 렌더링');
 		setIsEditing(false);
 		setSelectedContactId('');
 	}, [contacts]);
@@ -64,7 +61,7 @@ const Contact = () => {
 			...enteredContactData
 		}
 		try {
-			const response = await axios.post(HEROKU_ADDRESS, contactData)
+			const response = await axios.post(HEROKU_URL, contactData)
 			contactData = response.data;
 			setContacts([contactData, ...contacts]);
 		} catch (error) {
@@ -75,7 +72,7 @@ const Contact = () => {
 
 	const deleteContactHandler = async (contactId) => {
 		try {
-			const response = await axios.delete(`${HEROKU_ADDRESS}${contactId}`)
+			const response = await axios.delete(`${HEROKU_URL}${contactId}`)
 			const deletedContact = response.data;
 			setContacts(contacts.filter(contact => contact.id !== deletedContact.id))
 		} catch (error) {
