@@ -26,7 +26,7 @@ const ContactForm = (props) => {
   const nameChangeHandler = (e) => {
     setEnteredName(e.target.value);
   };
-  const numberChangeHandler = (e) => {
+  const phoneChangeHandler = (e) => {
     setEnteredPhone(e.target.value);
   };
   const ageChangeHandler = (e) => {
@@ -45,23 +45,23 @@ const ContactForm = (props) => {
       <div className={"contact-form__controls"}>
         <div>
           <label>이름</label>
-          <input type='text' onChange={nameChangeHandler}></input> {/* value ㅇㄷ */}
+          <input type='text' onChange={nameChangeHandler} value={enteredName}></input>{" "}
         </div>
         <div>
           <label>전화번호</label>
-          <input type='text' onChange={numberChangeHandler}></input>
+          <input type='text' onChange={phoneChangeHandler} value={enteredPhone}></input>
         </div>
         <div>
           <label>나이</label>
-          <input type='text' onChange={ageChangeHandler}></input>
+          <input type='text' onChange={ageChangeHandler} value={enteredAge}></input>
         </div>
         <div>
           <label>Email</label>
-          <input type='text' onChange={emailChangeHandler}></input>
+          <input type='text' onChange={emailChangeHandler} value={enteredEmail}></input>
         </div>
         <div>
           <label>설명</label>
-          <input type='text' onChange={descriptionChangeHandler}></input>
+          <input type='text' onChange={descriptionChangeHandler} value={enteredDescription}></input>
         </div>
       </div>
       <div className={"contact-form__buttons"}>
