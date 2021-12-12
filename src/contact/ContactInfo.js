@@ -1,18 +1,21 @@
 import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import './ContactInfo.css';
 
 const ContactInfo = (props) => {
+  const contacts = useSelector((state) => state.contact.items);
+  const selectedId = useSelector((state) => state.selectedId);
   const deleteClickHandler = () => {
-    props.onDelete(props.contactId);
+    props.onDelete(selectedId);
   };
 
   let contactInfoContent = (
     <div className={'contact-info__unselected'}>선택된 연락처가 없습니다.</div>
   );
 
-  const contact = props.contacts.find((contact) => contact.id === props.contactId);
+  const contact = contacts.find((contact) => contact.id === selectedId);
 
-  if (props.contactId) {
+  if (contact) {
     contactInfoContent = (
       <Fragment key={contact.id}>
         <dl>
@@ -37,7 +40,35 @@ const ContactInfo = (props) => {
         </dl>
       </Fragment>
     );
-    /* contactInfoContent = props.contacts
+  }
+
+  return (
+    <div className={'contact-info'}>
+      {contactInfoContent}
+      <button
+        tabIndex="-1"
+        type="button"
+        onClick={props.onAdd}
+        className={'contact-info__add button-shape__add'}
+      >
+        +
+      </button>
+      <button
+        tabIndex="-1"
+        type="button"
+        onClick={deleteClickHandler}
+        className={'contact-info__delete button-shape__delete'}
+        disabled={!contact ? true : false}
+      >
+        -
+      </button>
+    </div>
+  );
+};
+
+export default ContactInfo;
+
+/* contactInfoContent = props.contacts
       .filter((contact) => contact.id === props.contactId)
       .map((contact) => (
         <Fragment key={contact.id}>
@@ -63,30 +94,3 @@ const ContactInfo = (props) => {
           </dl>
         </Fragment>
       )); */
-  }
-
-  return (
-    <div className={'contact-info'}>
-      {contactInfoContent}
-      <button
-        tabIndex="-1"
-        type="button"
-        onClick={props.onAdd}
-        className={'contact-info__add button-shape__add'}
-      >
-        +
-      </button>
-      <button
-        tabIndex="-1"
-        type="button"
-        onClick={deleteClickHandler}
-        className={'contact-info__delete button-shape__delete'}
-        disabled={!props.contactId ? true : false}
-      >
-        -
-      </button>
-    </div>
-  );
-};
-
-export default ContactInfo;

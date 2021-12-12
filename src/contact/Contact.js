@@ -5,37 +5,36 @@ import ContactForm from './ContactForm';
 import ContactInfo from './ContactInfo';
 import ContactList from './ContactList';
 import ContactSearch from './ContactSearch';
+import { useDispatch, useSelector } from 'react-redux';
 
 const HEROKU_URL = 'https://contact-nestjs.herokuapp.com/contact/';
 // const DEV_URL = 'http://localhost:3001/contact/'
 
 const Contact = () => {
-  const [contacts, setContacts] = useState([]);
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contact.items);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedContactId, setSelectedContactId] = useState('');
   const [searchKeyword, setSearchKeyword] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
-  const getContacts = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(HEROKU_URL);
-      const data = response.data;
-      setContacts(data);
-    } catch (error) {
-      console.log(error.response);
-      return error.response;
-    }
-    setIsLoading(false);
-  };
-
   useEffect(() => {
+    const getContacts = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(HEROKU_URL);
+        const data = response.data;
+        dispatch({ type: 'SET_DATA', data });
+      } catch (error) {
+        console.log(error.response);
+        return error.response;
+      }
+      setIsLoading(false);
+    };
     getContacts();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setIsEditing(false);
-    setSelectedContactId('');
   }, [contacts]);
 
   const startEditingHandler = () => {
@@ -43,39 +42,36 @@ const Contact = () => {
   };
 
   const stopEditingHandler = () => {
-    // setSelectedContactId("");
     setIsEditing(false);
   };
 
-  const contactClickHandler = (contactId) => {
-    setSelectedContactId(contactId);
-  };
-
-  // onChangeSearchInput
   const searchChangeHandler = (enteredSearchKeyword) => {
     setSearchKeyword(enteredSearchKeyword);
   };
 
   const addContactHandler = async (enteredContactData) => {
     // const
-    let contactData = {
+    const contactData = {
       ...enteredContactData,
     };
     try {
       const response = await axios.post(HEROKU_URL, contactData);
-      contactData = response.data;
-      setContacts([contactData, ...contacts]);
+      const data = response.data;
+      dispatch({ type: 'ADD_DATA', data });
+      /*       setContacts([contactData, ...contacts]);
+       */
     } catch (error) {
+      console.log(error);
       console.log(error.response);
       return error.response;
     }
   };
-
-  const deleteContactHandler = async (contactId) => {
+  const deleteContactHandler = async (selectedId) => {
     try {
-      const response = await axios.delete(`${HEROKU_URL}${contactId}`);
+      const response = await axios.delete(`${HEROKU_URL}${selectedId}`);
       const deletedContact = response.data;
-      setContacts(contacts.filter((contact) => contact.id !== deletedContact.id));
+      dispatch({ type: 'DELETE_DATA', deletedContact });
+      dispatch({ type: 'SET_SELECTED_ID', selectedId: null });
     } catch (error) {
       console.log(error.response);
       return error.response;
@@ -85,14 +81,7 @@ const Contact = () => {
   let content = <div className={'contact-section__no-data'}>연락처를 추가해주세요.</div>;
 
   if (contacts.length > 0) {
-    content = (
-      <ContactList
-        searchKeyword={searchKeyword}
-        contacts={contacts}
-        onClick={contactClickHandler}
-        contactId={selectedContactId}
-      />
-    );
+    content = <ContactList searchKeyword={searchKeyword} contacts={contacts} />;
   }
   if (isLoading) {
     content = <div className={'contact-section__loading'}>데이터를 가져오는 중입니다.</div>;
@@ -107,7 +96,6 @@ const Contact = () => {
             {content}
           </div>
           <ContactInfo
-            contactId={selectedContactId}
             contacts={contacts}
             onDelete={deleteContactHandler}
             onAdd={startEditingHandler}

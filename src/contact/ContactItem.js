@@ -1,15 +1,18 @@
+import { useDispatch, useSelector } from 'react-redux';
 import './ContactItem.css';
 
 const ContactItem = (props) => {
-  const viewHandler = () => {
-    props.onClick(props.id);
+  const selectedId = useSelector((state) => state.selectedId);
+  const dispatch = useDispatch();
+  const contactClickHandler = () => {
+    dispatch({ type: 'SET_SELECTED_ID', selectedId: props.id });
   };
 
-  const contactItemClasses = `contact-item ${props.contactId === props.id && ' selected'}`;
+  const contactItemClasses = `contact-item ${selectedId === props.id && ' selected'}`;
 
   return (
     <li className={contactItemClasses}>
-      <button type="button" onClick={viewHandler} onFocus={viewHandler}>
+      <button type="button" onClick={contactClickHandler} onFocus={contactClickHandler}>
         <div>{props.name}</div>
         <div>{props.phone}</div>
       </button>
