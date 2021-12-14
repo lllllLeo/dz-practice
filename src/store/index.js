@@ -1,9 +1,9 @@
-import { createStore, combineReducers } from 'redux';
-import { contactReducer } from './contactReducer';
-import { selectedIdReducer } from './selectedIdReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import contactReducer from './contact';
+import selectedIdReducer from './selectedId';
 
-const store = createStore(
-  combineReducers({ contact: contactReducer, selectedId: selectedIdReducer })
-);
+const store = configureStore({
+  reducer: { contact: contactReducer, selectedId: selectedIdReducer },
+});
 
 export default store;

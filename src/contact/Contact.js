@@ -6,6 +6,8 @@ import ContactInfo from './ContactInfo';
 import ContactList from './ContactList';
 import ContactSearch from './ContactSearch';
 import { useDispatch, useSelector } from 'react-redux';
+import { contactActions } from '../store/contact';
+import { selectedIdActions } from '../store/selectedId';
 
 const HEROKU_URL = 'https://contact-nestjs.herokuapp.com/contact/';
 // const DEV_URL = 'http://localhost:3001/contact/'
@@ -23,7 +25,7 @@ const Contact = () => {
       try {
         const response = await axios.get(HEROKU_URL);
         const data = response.data;
-        dispatch({ type: 'SET_DATA', data });
+        dispatch(contactActions.setContact(data));
       } catch (error) {
         console.log(error.response);
         return error.response;
@@ -50,16 +52,11 @@ const Contact = () => {
   };
 
   const addContactHandler = async (enteredContactData) => {
-    // const
-    const contactData = {
-      ...enteredContactData,
-    };
+    const contactData = { ...enteredContactData };
     try {
       const response = await axios.post(HEROKU_URL, contactData);
       const data = response.data;
-      dispatch({ type: 'ADD_DATA', data });
-      /*       setContacts([contactData, ...contacts]);
-       */
+      dispatch(contactActions.addContact(data));
     } catch (error) {
       console.log(error);
       console.log(error.response);
@@ -70,8 +67,8 @@ const Contact = () => {
     try {
       const response = await axios.delete(`${HEROKU_URL}${selectedId}`);
       const deletedContact = response.data;
-      dispatch({ type: 'DELETE_DATA', deletedContact });
-      dispatch({ type: 'SET_SELECTED_ID', selectedId: null });
+      dispatch(contactActions.deleteContact(deletedContact));
+      dispatch(selectedIdActions.setSelectedId(null));
     } catch (error) {
       console.log(error.response);
       return error.response;

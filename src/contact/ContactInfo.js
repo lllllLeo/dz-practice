@@ -4,7 +4,7 @@ import './ContactInfo.css';
 
 const ContactInfo = (props) => {
   const contacts = useSelector((state) => state.contact.items);
-  const selectedId = useSelector((state) => state.selectedId);
+  const selectedId = useSelector((state) => state.selectedId.id);
   const deleteClickHandler = () => {
     props.onDelete(selectedId);
   };
