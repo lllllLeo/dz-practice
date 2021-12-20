@@ -1,13 +1,19 @@
-import ContactItem from "./ContactItem";
-import "./ContactList.css";
+import Contact from '../models/contact';
+import ContactItem from './ContactItem';
+import './ContactList.css';
 
-const ContactList = (props) => {
+const ContactList = (props: {
+  searchKeyword: string;
+  contacts: Contact[];
+  onClick: (contactId: string) => void;
+  contactId: string;
+}) => {
   return (
-    <ul className={"contact-list"}>
+    <ul className={'contact-list'}>
       {props.contacts
         .filter((contact) =>
           Object.keys(contact).some((key) =>
-            key === "id" ? false : contact[key].includes(props.searchKeyword)
+            key === 'id' ? false : contact[key].includes(props.searchKeyword)
           )
         )
         .map((contact) => (
